@@ -5,3 +5,11 @@ backend/static
 
 ### database ###
 db.sqlite3
+
+### nativeApp ###
+/nativeApp/node_modules/
+/nativeApp/npm-debug.*
+*.jks
+*.p12
+*.key
+*.mobileprovision
