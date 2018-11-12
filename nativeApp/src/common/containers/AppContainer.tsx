@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { Root } from "native-base";
+import React, { Component } from 'react';
+import { Root } from 'native-base';
 
-import { RootNavigator } from "../components/RootNavigator";
+import { RootNavigator } from '../components/RootNavigator';
 
 export class AppContainer extends Component {
   render() {

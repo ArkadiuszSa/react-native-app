@@ -1,3 +1,3 @@
 export const colors = {
-  mainTurquoise: "#43D8BD"
+  mainTurquoise: '#43D8BD'
 };
