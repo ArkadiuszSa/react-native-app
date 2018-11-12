@@ -11,7 +11,6 @@ export class NotesList extends Component {
             React.createElement(Text, { style: styles.text }, item.text)));
     }
     render() {
-        console.log(this.props);
         return (React.createElement(View, null,
             React.createElement(ScrollView, null,
                 React.createElement(FlatList, { data: notesMock, keyExtractor: item => String(item.id), renderItem: this.renderItem })),

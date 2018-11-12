@@ -16,7 +16,6 @@ export class NotesList extends Component<ParentProps> {
     </View>
   )
   render() {
-    console.log(this.props);
     return (
       <View>
         <ScrollView>

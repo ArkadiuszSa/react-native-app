@@ -28,6 +28,7 @@
     "react-navigation": "^2.18.2"
   },
   "devDependencies": {
+    "@types/react-redux": "^6.0.9",
     "babel-preset-expo": "^5.0.0"
   }
 }
