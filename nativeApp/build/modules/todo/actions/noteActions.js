@@ -12,4 +12,19 @@ export const fetchNotesFail = (msg) => ({
     type: FETCH_NOTES_FAILED,
     payload: msg
 });
+export const CREATE_NOTE_REQUESTED = 'CREATE_NOTE_REQUESTED';
+export const createNoteRequest = (note) => ({
+    type: CREATE_NOTE_REQUESTED,
+    payload: note
+});
+export const CREATE_NOTE_SUCCEEDED = 'CREATE_NOTE_SUCCEEDED';
+export const createNoteSuccess = (note) => ({
+    type: CREATE_NOTE_SUCCEEDED,
+    payload: note
+});
+export const CREATE_NOTE_FAILED = 'CREATE_NOTE_FAILED';
+export const createNoteFail = (msg) => ({
+    type: CREATE_NOTE_FAILED,
+    payload: msg
+});
 //# sourceMappingURL=noteActions.js.map

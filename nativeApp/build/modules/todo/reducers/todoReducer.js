@@ -6,10 +6,14 @@ const initialState = {
 export const TodoReducer = (state = initialState, action) => {
     switch (action.type) {
         case actions.FETCH_NOTES_REQUESTED:
+        case actions.CREATE_NOTE_REQUESTED:
             return Object.assign({}, state, { isLoading: true });
         case actions.FETCH_NOTES_SUCCEEDED:
             return Object.assign({}, state, { isLoading: false, notes: action.payload });
+        case actions.CREATE_NOTE_SUCCEEDED:
+            return Object.assign({}, state, { isLoading: false, notes: [...state.notes] });
         case actions.FETCH_NOTES_FAILED:
+        case actions.CREATE_NOTE_FAILED:
             return Object.assign({}, state, { isLoading: false });
         default:
             return state;

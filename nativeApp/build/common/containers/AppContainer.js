@@ -14,7 +14,7 @@ export class AppContainer extends Component {
     constructor() {
         super(...arguments);
         this.state = {
-            isReady: false,
+            isReady: false
         };
     }
     componentDidMount() {
@@ -23,7 +23,7 @@ export class AppContainer extends Component {
     loadFonts() {
         return __awaiter(this, void 0, void 0, function* () {
             yield Font.loadAsync({
-                'Ionicons': require('native-base/Fonts/Ionicons.ttf'),
+                'Ionicons': require('native-base/Fonts/Ionicons.ttf')
             });
             this.setState({ isReady: true });
         });

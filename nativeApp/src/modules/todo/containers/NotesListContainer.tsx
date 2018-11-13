@@ -3,17 +3,24 @@ import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import { NavigationScreenProps } from 'react-navigation';
 
+import { AppState } from '../../../appState';
 import { colors } from '../../../config/variables';
 import { NotesList } from '../components/NotesList';
 import { fetchNotesRequest } from '../actions/noteActions';
+import { getNotes } from '../selectors/todoSelectors';
+import { Note } from '../models/todoModel';
 
 interface ActionsProps {
   fetchNotesRequest: typeof fetchNotesRequest;
 }
 
-type ParentProps = NavigationScreenProps & ActionsProps;
+interface PropsFromState {
+  notes: Note[]
+}
 
-class NotesListComponent extends Component<ParentProps> {
+type NotesListContainerProps = PropsFromState & NavigationScreenProps & ActionsProps;
+
+class NotesListComponent extends Component<NotesListContainerProps> {
   static navigationOptions = {
     title: 'To do:',
     headerStyle: {
@@ -30,6 +37,7 @@ class NotesListComponent extends Component<ParentProps> {
   }
 
   public render() {
+    console.log(this.props.notes);
     return (
       <View style={styles.rootView}>
         <NotesList navigation={this.props.navigation} />
@@ -44,7 +52,12 @@ const styles = StyleSheet.create({
   }
 });
 
+const mapStateToProps = (state: AppState) => ({
+  notes: getNotes(state)
+
+});
+
 export const NotesListContainer = connect(
-  null,
+  mapStateToProps,
   { fetchNotesRequest }
 )(NotesListComponent);

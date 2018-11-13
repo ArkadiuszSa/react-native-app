@@ -5,15 +5,15 @@ import { Font } from 'expo';
 import { RootNavigator } from '../components/RootNavigator';
 
 export class AppContainer extends Component {
-public state= {
-  isReady: false,
-}
+public state = {
+  isReady: false
+};
   public componentDidMount() {
     this.loadFonts();
   }
   async loadFonts() {
     await Font.loadAsync({
-      'Ionicons': require('native-base/Fonts/Ionicons.ttf'),
+      'Ionicons': require('native-base/Fonts/Ionicons.ttf')
     });
     this.setState({ isReady: true });
   }

@@ -21,7 +21,31 @@ export const fetchNotesFail = (msg: string) => ({
   payload: msg
 });
 
+export const CREATE_NOTE_REQUESTED = 'CREATE_NOTE_REQUESTED';
+export type CreateNoteRequestAction = Action<typeof CREATE_NOTE_REQUESTED, Note>;
+export const createNoteRequest = (note: Note) => ({
+  type: CREATE_NOTE_REQUESTED,
+  payload: note
+});
+
+export const CREATE_NOTE_SUCCEEDED = 'CREATE_NOTE_SUCCEEDED';
+export type CreateNoteSuccedAction = Action<typeof CREATE_NOTE_SUCCEEDED>;
+export const createNoteSuccess = (note: Note) => ({
+  type: CREATE_NOTE_SUCCEEDED,
+  payload: note
+});
+
+export const CREATE_NOTE_FAILED = 'CREATE_NOTE_FAILED';
+export type CreateNoteFailAction = Action<typeof CREATE_NOTE_FAILED>;
+export const createNoteFail = (msg: string) => ({
+  type: CREATE_NOTE_FAILED,
+  payload: msg
+});
+
 export type NoteActions =
   | FetchNotesRequestAction
   | FetchNotesSuccedAction
-  | FetchNotesFailAction;
+  | FetchNotesFailAction
+  | CreateNoteRequestAction
+  | CreateNoteSuccedAction
+  | CreateNoteFailAction;

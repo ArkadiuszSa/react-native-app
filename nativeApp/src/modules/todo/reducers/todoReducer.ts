@@ -18,10 +18,15 @@ export const TodoReducer = (
 ) => {
   switch (action.type) {
     case actions.FETCH_NOTES_REQUESTED:
+    case actions.CREATE_NOTE_REQUESTED:
       return { ...state, isLoading: true };
     case actions.FETCH_NOTES_SUCCEEDED:
+
       return { ...state, isLoading: false, notes: action.payload };
+    case actions.CREATE_NOTE_SUCCEEDED:
+      return { ...state, isLoading: false, notes: [...state.notes]};
     case actions.FETCH_NOTES_FAILED:
+    case actions.CREATE_NOTE_FAILED:
       return { ...state, isLoading: false };
     default:
       return state;
