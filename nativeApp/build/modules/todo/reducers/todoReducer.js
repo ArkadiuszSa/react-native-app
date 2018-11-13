@@ -1,4 +1,4 @@
-import * as actions from '../actions/noteActions';
+import * as actions from "../actions/noteActions";
 const initialState = {
     isLoading: false,
     notes: []
@@ -11,7 +11,10 @@ export const TodoReducer = (state = initialState, action) => {
         case actions.FETCH_NOTES_SUCCEEDED:
             return Object.assign({}, state, { isLoading: false, notes: action.payload });
         case actions.CREATE_NOTE_SUCCEEDED:
-            return Object.assign({}, state, { isLoading: false, notes: [...state.notes] });
+            console.log("action");
+            console.log(action);
+            console.log("action");
+            return Object.assign({}, state, { isLoading: false, notes: [...state.notes, action.payload] });
         case actions.FETCH_NOTES_FAILED:
         case actions.CREATE_NOTE_FAILED:
             return Object.assign({}, state, { isLoading: false });

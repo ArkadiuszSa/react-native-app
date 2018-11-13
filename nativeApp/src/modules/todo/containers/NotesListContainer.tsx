@@ -1,34 +1,36 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { StyleSheet, View } from 'react-native';
-import { NavigationScreenProps } from 'react-navigation';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { StyleSheet, View } from "react-native";
+import { NavigationScreenProps } from "react-navigation";
 
-import { AppState } from '../../../appState';
-import { colors } from '../../../config/variables';
-import { NotesList } from '../components/NotesList';
-import { fetchNotesRequest } from '../actions/noteActions';
-import { getNotes } from '../selectors/todoSelectors';
-import { Note } from '../models/todoModel';
+import { AppState } from "../../../appState";
+import { colors } from "../../../config/variables";
+import { NotesList } from "../components/NotesList";
+import { fetchNotesRequest } from "../actions/noteActions";
+import { getNotes } from "../selectors/todoSelectors";
+import { Note } from "../models/todoModel";
 
 interface ActionsProps {
   fetchNotesRequest: typeof fetchNotesRequest;
 }
 
 interface PropsFromState {
-  notes: Note[]
+  notes: Note[];
 }
 
-type NotesListContainerProps = PropsFromState & NavigationScreenProps & ActionsProps;
+type NotesListContainerProps = PropsFromState &
+  NavigationScreenProps &
+  ActionsProps;
 
 class NotesListComponent extends Component<NotesListContainerProps> {
   static navigationOptions = {
-    title: 'To do:',
+    title: "To do:",
     headerStyle: {
       backgroundColor: colors.mainTurquoise
     },
-    headerTintColor: '#fff',
+    headerTintColor: "#fff",
     headerTitleStyle: {
-      fontWeight: 'bold'
+      fontWeight: "bold"
     }
   };
 
@@ -37,7 +39,10 @@ class NotesListComponent extends Component<NotesListContainerProps> {
   }
 
   public render() {
+    console.log("props");
     console.log(this.props.notes);
+    console.log("props");
+
     return (
       <View style={styles.rootView}>
         <NotesList navigation={this.props.navigation} />
@@ -54,7 +59,6 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state: AppState) => ({
   notes: getNotes(state)
-
 });
 
 export const NotesListContainer = connect(

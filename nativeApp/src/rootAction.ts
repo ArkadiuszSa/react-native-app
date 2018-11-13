@@ -1,4 +1,4 @@
-import { NoteActions } from './modules/todo/actions/noteActions';
+import { NoteActions } from "./modules/todo/actions/noteActions";
 
 export interface Action<T, P = null> {
   readonly type: T;

@@ -6,7 +6,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage } from "react-native";
 export class StorageService {
     constructor() {
         this.setItem = (field, data, parse = false) => AsyncStorage.setItem(field, parse ? JSON.stringify(data) : data);
@@ -17,6 +17,9 @@ export class StorageService {
             if (item && parse) {
                 return JSON.parse(item);
             }
+            console.log("item");
+            console.log(item);
+            console.log("item");
             return item;
         });
     }

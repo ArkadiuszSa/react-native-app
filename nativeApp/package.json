@@ -21,14 +21,18 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^8.0.0",
+    "concurrently": "^4.0.1",
     "expo": "^31.0.2",
     "native-base": "^2.8.1",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
     "react-navigation": "^2.18.2",
     "react-redux": "^5.1.1",
+    "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.5",
-    "redux-observable": "^1.0.0"
+    "redux-observable": "^1.0.0",
+    "rxjs": "6.2.2",
+    "typescript": "^3.1.6"
   },
   "devDependencies": {
     "@types/expo": "^30.0.0",
