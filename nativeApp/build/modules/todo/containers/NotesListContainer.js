@@ -1,30 +1,30 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { StyleSheet, View } from "react-native";
-import { colors } from "../../../config/variables";
-import { NotesList } from "../components/NotesList";
-import { fetchNotesRequest } from "../actions/noteActions";
-import { getNotes } from "../selectors/todoSelectors";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { StyleSheet, View } from 'react-native';
+import { colors } from '../../../config/variables';
+import { NotesList } from '../components/NotesList';
+import { fetchNotesRequest } from '../actions/noteActions';
+import { getNotes } from '../selectors/todoSelectors';
 class NotesListComponent extends Component {
     componentDidMount() {
         this.props.fetchNotesRequest();
     }
     render() {
-        console.log("props");
+        console.log('props');
         console.log(this.props.notes);
-        console.log("props");
+        console.log('props');
         return (React.createElement(View, { style: styles.rootView },
             React.createElement(NotesList, { navigation: this.props.navigation })));
     }
 }
 NotesListComponent.navigationOptions = {
-    title: "To do:",
+    title: 'To do:',
     headerStyle: {
         backgroundColor: colors.mainTurquoise
     },
-    headerTintColor: "#fff",
+    headerTintColor: '#fff',
     headerTitleStyle: {
-        fontWeight: "bold"
+        fontWeight: 'bold'
     }
 };
 const styles = StyleSheet.create({

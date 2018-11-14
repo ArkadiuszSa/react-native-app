@@ -13,7 +13,8 @@ public state = {
   }
   async loadFonts() {
     await Font.loadAsync({
-      'Ionicons': require('native-base/Fonts/Ionicons.ttf')
+      'Ionicons': require('native-base/Fonts/Ionicons.ttf'),
+      'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf')
     });
     this.setState({ isReady: true });
   }

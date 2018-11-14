@@ -1,6 +1,6 @@
-import { AppAction } from "../../../rootAction";
-import * as actions from "../actions/noteActions";
-import { Note } from "../models/todoModel";
+import { AppAction } from '../../../rootAction';
+import * as actions from '../actions/noteActions';
+import { Note } from '../models/todoModel';
 
 export interface TodoState {
   isLoading: boolean;
@@ -23,10 +23,6 @@ export const TodoReducer = (
     case actions.FETCH_NOTES_SUCCEEDED:
       return { ...state, isLoading: false, notes: action.payload };
     case actions.CREATE_NOTE_SUCCEEDED:
-      console.log("action");
-      console.log(action);
-      console.log("action");
-
       return {
         ...state,
         isLoading: false,

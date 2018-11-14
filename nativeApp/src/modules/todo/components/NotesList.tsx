@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, FlatList, ScrollView, StyleSheet, Dimensions } from 'react-native';
 import { Icon, CheckBox } from 'native-base';
 import { NavigationScreenProps } from 'react-navigation';
 
-import { notesMock } from '../../../config/mocks/mockNotes';
 import { colors } from '../../../config/variables';
+import { Note } from '../models/todoModel';
 
-type ParentProps = NavigationScreenProps;
+interface ParentProps {
+  notes: Note[];
+}
 
-export class NotesList extends Component<ParentProps> {
+type NotesListProps = NavigationScreenProps & ParentProps;
+
+export class NotesList extends Component<NotesListProps> {
   renderItem = ({ item }: any) => (
     <View style={styles.listItem}>
       <CheckBox color={colors.mainTurquoise} style={styles.checkbox} />
@@ -17,10 +21,10 @@ export class NotesList extends Component<ParentProps> {
   )
   render() {
     return (
-      <View>
+      <View style={styles.listWrapper}>
         <ScrollView>
           <FlatList
-            data={notesMock}
+            data={this.props.notes}
             keyExtractor={item => String(item.id)}
             renderItem={this.renderItem}
           />
@@ -38,6 +42,9 @@ export class NotesList extends Component<ParentProps> {
 }
 
 const styles = StyleSheet.create({
+  listWrapper: {
+    minHeight:  Dimensions.get('window').height - 80
+  },
   listItem: {
     display: 'flex',
     flexDirection: 'row',
