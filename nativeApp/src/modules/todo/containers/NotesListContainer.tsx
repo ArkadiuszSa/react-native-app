@@ -7,7 +7,7 @@ import { AppState } from '../../../appState';
 import { colors } from '../../../config/variables';
 import { NotesList } from '../components/NotesList';
 import { fetchNotesRequest } from '../actions/noteActions';
-import { getNotes } from '../selectors/todoSelectors';
+import { isDoneNotesList, getListNotes } from '../selectors/todoSelectors';
 import { Note } from '../models/todoModel';
 
 interface ActionsProps {
@@ -24,7 +24,6 @@ type NotesListContainerProps = PropsFromState &
 
 class NotesListComponent extends Component<NotesListContainerProps> {
   static navigationOptions = {
-    title: 'To do:',
     headerStyle: {
       backgroundColor: colors.mainTurquoise
     },
@@ -34,11 +33,15 @@ class NotesListComponent extends Component<NotesListContainerProps> {
     }
   };
 
-  public componentDidMount(): void {
+  public componentWillMount(): void {
     this.props.fetchNotesRequest();
   }
 
   public render() {
+    console.log('navCont');
+    console.log(this.props.navigation.state.routeName);
+    console.log('navCont');
+
     return (
       <View style={styles.rootView}>
         <NotesList navigation={this.props.navigation} notes={this.props.notes} />
@@ -53,9 +56,11 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = (state: AppState) => ({
-  notes: getNotes(state)
-});
+const mapStateToProps = (state: AppState, ownProps: NavigationScreenProps) => {
+  console.log(ownProps);
+  return {notes: getListNotes(state, ownProps),
+  isDoneNotesList: isDoneNotesList(state, ownProps)};
+};
 
 export const NotesListContainer = connect(
   mapStateToProps,

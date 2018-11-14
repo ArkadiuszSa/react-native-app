@@ -1,13 +1,19 @@
-import { createStackNavigator } from 'react-navigation';
-import { NotesListContainer } from '../../modules/todo/containers/NotesListContainer';
-import { NoteFormContainer } from '../../modules/todo/containers/NoteFormContainer';
+import {  createStackNavigator } from 'react-navigation';
 
-export const RootNavigator = createStackNavigator(
-  {
-    NotesList: { screen: NotesListContainer },
-    NoteForm: { screen: NoteFormContainer }
-  },
-  {
-    initialRouteName: 'NotesList'
-  }
-);
+import { colors } from '../../config/variables';
+import { NoteFormContainer } from '../../modules/todo/containers/NoteFormContainer';
+import {NotesListsTab} from './NotesListNavigator';
+
+export const RootNavigator = createStackNavigator({
+      Tab: {
+        screen: NotesListsTab,
+        navigationOptions: {
+          headerStyle: {
+            backgroundColor: colors.mainTurquoise,
+            height: 0
+          }
+        }
+
+      },
+      NoteForm: { screen: NoteFormContainer }
+});
