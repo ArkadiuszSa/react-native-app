@@ -1,9 +1,9 @@
 export interface Config {
-    [key: string]: string;
+  [key: string]: string;
 }
 
-export enum routeConfig  {
-    NotesDoneList,
-    NotesToDoList,
-    NoteForm
-}
+export const routeConfig = {
+  notesDoneList: "NotesDoneList",
+  notesToDoList: "NotesToDoList",
+  noteForm: "NoteForm"
+};

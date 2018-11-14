@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { StyleSheet, View } from 'react-native';
-import { NavigationScreenProps } from 'react-navigation';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { StyleSheet, View } from "react-native";
+import { NavigationScreenProps } from "react-navigation";
 
-import { AppState } from '../../../appState';
-import { colors } from '../../../config/variables';
-import { NotesList } from '../components/NotesList';
-import { fetchNotesRequest } from '../actions/noteActions';
-import { isDoneNotesList, getListNotes } from '../selectors/todoSelectors';
-import { Note } from '../models/todoModel';
+import { AppState } from "../../../appState";
+import { colors } from "../../../config/variables";
+import { NotesList } from "../components/NotesList";
+import { fetchNotesRequest } from "../actions/noteActions";
+import { isDoneNotesList, getListNotes } from "../selectors/todoSelectors";
+import { Note } from "../models/todoModel";
 
 interface ActionsProps {
   fetchNotesRequest: typeof fetchNotesRequest;
@@ -22,29 +22,46 @@ type NotesListContainerProps = PropsFromState &
   NavigationScreenProps &
   ActionsProps;
 
-class NotesListComponent extends Component<NotesListContainerProps> {
+interface NotesListContainerState {
+  refreshFlag: boolean;
+}
+
+class NotesListComponent extends Component<
+  NotesListContainerProps,
+  NotesListContainerState
+> {
+  public state = {
+    refreshFlag: false
+  };
+
   static navigationOptions = {
     headerStyle: {
       backgroundColor: colors.mainTurquoise
     },
-    headerTintColor: '#fff',
+    headerTintColor: "#fff",
     headerTitleStyle: {
-      fontWeight: 'bold'
+      fontWeight: "bold"
     }
   };
 
   public componentWillMount(): void {
     this.props.fetchNotesRequest();
+    const didRefresh = this.props.navigation.addListener("didBlur", a => {
+      this.setState(({ refreshFlag }) => ({
+        refreshFlag: !refreshFlag
+      }));
+
+      this.props.fetchNotesRequest();
+    });
   }
 
   public render() {
-    console.log('navCont');
-    console.log(this.props.navigation.state.routeName);
-    console.log('navCont');
-
     return (
       <View style={styles.rootView}>
-        <NotesList navigation={this.props.navigation} notes={this.props.notes} />
+        <NotesList
+          navigation={this.props.navigation}
+          notes={this.props.notes}
+        />
       </View>
     );
   }
@@ -56,11 +73,10 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = (state: AppState, ownProps: NavigationScreenProps) => {
-  console.log(ownProps);
-  return {notes: getListNotes(state, ownProps),
-  isDoneNotesList: isDoneNotesList(state, ownProps)};
-};
+const mapStateToProps = (state: AppState, ownProps: NavigationScreenProps) => ({
+  notes: getListNotes(state, ownProps),
+  isDoneNotesList: isDoneNotesList(state, ownProps)
+});
 
 export const NotesListContainer = connect(
   mapStateToProps,
