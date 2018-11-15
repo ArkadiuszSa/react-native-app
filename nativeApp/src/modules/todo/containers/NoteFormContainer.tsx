@@ -1,84 +1,106 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { View , StyleSheet} from 'react-native';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { View, StyleSheet } from "react-native";
 
-import {routeConfig} from '../../../config/appConfig';
-import { colors } from '../../../config/variables';
-import { NoteForm } from '../components/NoteForm';
-import { createNoteRequest } from '../actions/noteActions';
-import { Button, Text } from 'native-base';
-import { NavigationScreenProps } from 'react-navigation';
+import { colors } from "../../../config/variables";
+import { NoteForm } from "../components/NoteForm";
+import { createNoteRequest } from "../actions/noteActions";
+import { Button, Text } from "native-base";
+import { NavigationScreenProps } from "react-navigation";
+import { Note } from "../models/todoModel";
 
 interface ActionsProps {
-  createNoteRequest: typeof createNoteRequest;
+	createNoteRequest: typeof createNoteRequest;
 }
 
-type ParentProps =  ActionsProps & NavigationScreenProps;
+type ParentProps = ActionsProps & NavigationScreenProps;
 
 interface NoteFormComponentState {
-  title: string
+	title: string;
+	description: string;
+	date: string;
 }
 
 const styles = StyleSheet.create({
-  saveButton: {
-    backgroundColor: colors.mainTurquoise
-  },
-  saveButtonText: {
-    color: 'white',
-    fontSize: 20,
-    padding: 10
-  }
+	saveButton: {
+		backgroundColor: colors.mainTurquoise
+	},
+	saveButtonText: {
+		color: "white",
+		fontSize: 20,
+		padding: 10
+	}
 });
 
 class NoteFormComponent extends Component<ParentProps, NoteFormComponentState> {
-  public state = {
-    title: ''
-  };
+	public state = {
+		title: "",
+		description: "",
+		date: ""
+	};
 
-  static navigationOptions = ({ navigation }: NavigationScreenProps) => {
-    return {
-      headerStyle: {
-        backgroundColor: colors.mainTurquoise
-      },
-      headerTintColor: '#fff',
-      headerRight: (
-        <Button
-          onPress={navigation.getParam('handleNoteFormSubmit')}
-          transparent
-        ><Text style={styles.saveButtonText}>Save</Text></Button>
-      )
-    };
-  }
+	static navigationOptions = ({ navigation }: NavigationScreenProps) => {
+		return {
+			headerStyle: {
+				backgroundColor: colors.mainTurquoise
+			},
+			headerTintColor: "#fff",
+			headerRight: (
+				<Button
+					onPress={navigation.getParam("_handleNoteFormSubmit")}
+					transparent
+				>
+					<Text style={styles.saveButtonText}>Save</Text>
+				</Button>
+			)
+		};
+	};
 
-  public componentDidMount(): void {
-    this.props.navigation.setParams({ handleNoteFormSubmit: this._handleNoteFormSubmit });
-  }
+	public componentDidMount(): void {
+		this.props.navigation.setParams({
+			_handleNoteFormSubmit: this.handleNoteFormSubmit
+		});
+	}
 
-  render() {
-    return (
-      <View>
-        <NoteForm noteValue={this.state.title} handleNoteFormChange={this.handleNoteFormChange}/>
-      </View>
-    );
-  }
+	render() {
+		return (
+			<View>
+				<NoteForm
+					title={this.state.title}
+					description={this.state.description}
+					handleTitleChange={this.handleTitleChange}
+					handleDescriptionChange={this.handleDescriptionChange}
+					handleDateChange={this.handleDateChange}
+				/>
+			</View>
+		);
+	}
 
-  private handleNoteFormChange = (title: string) => {
-    this.setState({title: title});
-  }
+	private handleTitleChange = (title: string) => {
+		this.setState({ title });
+	};
 
-  private _handleNoteFormSubmit = () => {
-    this.props.createNoteRequest({
-      id: -1,
-      title: this.state.title,
-      isDone: false,
-      date: ''
-    });
+	private handleDescriptionChange = (description: string) => {
+		this.setState({ description });
+	};
 
-    this.props.navigation.navigate({ routeName: routeConfig.notesToDoList });
-  }
+	private handleDateChange = (date: string) => {
+		this.setState({ date });
+	};
+
+	private handleNoteFormSubmit = () => {
+		const { title, description, date } = this.state;
+		this.props.createNoteRequest({
+			id: -1,
+			title,
+			description,
+			isDone: false,
+			date: date
+		});
+	};
 }
 
 export const NoteFormContainer = connect(
-  null,
-  { createNoteRequest }
+	null,
+	{ createNoteRequest }
 )(NoteFormComponent);

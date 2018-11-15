@@ -1,6 +1,7 @@
 export interface Note {
-  id: number;
-  title: string;
-  date: string;
-  isDone: boolean;
+	id: number;
+	title: string;
+	description: string;
+	date: string;
+	isDone: boolean;
 }
