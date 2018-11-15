@@ -78,23 +78,5 @@ export const notesMock: Note[] = [
     date: '13-12-2018',
     text: 'Zapłaić za mandat',
     isDone: false
-  },
-  {
-    id: 14,
-    date: '14-12-2018',
-    text: "Złożyć życzenia wujkowi Dave'owi",
-    isDone: false
-  },
-  {
-    id: 15,
-    date: '13-12-2018',
-    text: 'Odwiedzić klinikę',
-    isDone: false
-  },
-  {
-    id: 16,
-    date: '13-12-2018',
-    text: 'Zapłaić za mandat',
-    isDone: false
   }
 ];

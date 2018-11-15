@@ -10,28 +10,44 @@ export class NoteService {
     }
 
     public fetchNotes() {
-        return from(this.getNotes());
+        // this.deleteNotes();
+        return from(this.getNotesFromStorage());
     }
 
     public createNote = (note: Note) => {
-        return from(this.saveNote(note));
+        return from(this.saveNoteInStorage(note));
+    }
+
+    public updateNote = (note: Note) => {
+        console.log('leci pudate');
+        return from(this.updateNoteInStorage(note));
     }
 
     public deleteNotes = () => {
         return this.storageService.removeItem('notes');
     }
 
-    public async getNotes(): Promise<Note[]> {
+    private async getNotesFromStorage(): Promise<Note[]> {
         const notes = await this.storageService.getItem<Note[]>('notes', true);
         return notes ? (notes as Note[]) : ([]);
     }
 
-    public async saveNote(note: Note) {
+    private async saveNoteInStorage(note: Note) {
         const id = new Date().valueOf();
         const newNote = { id, text: note.text, date: note.date, isDone: note.isDone};
         const notes = await this.storageService.getItem<Note[]>('notes', true);
         await this.storageService.setItem('notes', [...notes ? (notes) : [], newNote], true);
         return newNote;
+    }
+
+    private async updateNoteInStorage(note: Note) {
+        console.log('leci update');
+        const notes = await this.storageService.getItem<Note[]>('notes', true);
+        if (Array.isArray(notes)) {
+            const newNotes = notes.filter(({id}: Note) => id !== note.id);
+            await this.storageService.setItem('notes', [...newNotes ? (newNotes) : [], note], true);
+        }
+        return note;
     }
 
 }

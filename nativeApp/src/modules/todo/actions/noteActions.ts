@@ -48,10 +48,40 @@ export const createNoteFail = (msg: string) => ({
   payload: msg
 });
 
+export const UPDATE_NOTE_REQUESTED = 'UPDATE_NOTE_REQUESTED';
+export type UpdateNoteRequestAction = Action<
+  typeof UPDATE_NOTE_REQUESTED, Note
+>;
+export const updateNoteRequest = (note: Note) => ({
+  type: UPDATE_NOTE_REQUESTED,
+  payload: note
+});
+
+export const UPDATE_NOTE_SUCCEEDED = 'UPDATE_NOTE_SUCCEEDED';
+export type UpdateNoteSuccedAction = Action<
+  typeof UPDATE_NOTE_SUCCEEDED, Note
+>;
+export const updateNoteSuccess = (note: Note) => ({
+  type: UPDATE_NOTE_SUCCEEDED,
+  payload: note
+});
+
+export const UPDATE_NOTE_FAILED = 'UPDATE_NOTE_FAILED';
+export type UpdateNoteFAilAction = Action<
+  typeof UPDATE_NOTE_FAILED, string
+>;
+export const updateNoteFail = (msg: string) => ({
+  type: UPDATE_NOTE_FAILED,
+  payload: msg
+});
+
 export type NoteActions =
   | FetchNotesRequestAction
   | FetchNotesSuccedAction
   | FetchNotesFailAction
   | CreateNoteRequestAction
   | CreateNoteSuccedAction
-  | CreateNoteFailAction;
+  | CreateNoteFailAction
+  | UpdateNoteRequestAction
+  | UpdateNoteSuccedAction
+  | UpdateNoteFAilAction;

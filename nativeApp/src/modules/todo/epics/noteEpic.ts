@@ -32,5 +32,17 @@ export const noteEpicFactory = (noteService: NoteService): Epic => {
       )
     );
 
-  return combineEpics(fetchNotesEpic, createNoteEpic);
+    const updateNoteEpic: Epic = action$ =>
+    action$.pipe(
+      ofType<actions.UpdateNoteRequestAction>(actions.UPDATE_NOTE_REQUESTED),
+      pluck('payload'),
+      switchMap((note: Note) =>
+        noteService.updateNote(note).pipe(
+          map((noteData: Note) => actions.updateNoteSuccess(noteData)),
+          catchError(err => of(actions.updateNoteFail(err)))
+        )
+      )
+    );
+
+  return combineEpics(fetchNotesEpic, createNoteEpic, updateNoteEpic);
 };

@@ -1,17 +1,18 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { StyleSheet, View } from "react-native";
-import { NavigationScreenProps } from "react-navigation";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { StyleSheet, View } from 'react-native';
+import { NavigationScreenProps } from 'react-navigation';
 
-import { AppState } from "../../../appState";
-import { colors } from "../../../config/variables";
-import { NotesList } from "../components/NotesList";
-import { fetchNotesRequest } from "../actions/noteActions";
-import { isDoneNotesList, getListNotes } from "../selectors/todoSelectors";
-import { Note } from "../models/todoModel";
+import { AppState } from '../../../appState';
+import { colors } from '../../../config/variables';
+import { NotesList } from '../components/NotesList';
+import { fetchNotesRequest, updateNoteRequest } from '../actions/noteActions';
+import { isDoneNotesList, getListNotes } from '../selectors/todoSelectors';
+import { Note } from '../models/todoModel';
 
 interface ActionsProps {
   fetchNotesRequest: typeof fetchNotesRequest;
+  updateNoteRequest: typeof updateNoteRequest;
 }
 
 interface PropsFromState {
@@ -35,18 +36,20 @@ class NotesListComponent extends Component<
   };
 
   static navigationOptions = {
-    headerStyle: {
-      backgroundColor: colors.mainTurquoise
-    },
-    headerTintColor: "#fff",
-    headerTitleStyle: {
-      fontWeight: "bold"
-    }
+
+      headerStyle: {
+        backgroundColor: colors.mainTurquoise
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold'
+      }
+
   };
 
   public componentWillMount(): void {
     this.props.fetchNotesRequest();
-    const didRefresh = this.props.navigation.addListener("didBlur", a => {
+    const didRefresh = this.props.navigation.addListener('didBlur', a => {
       this.setState(({ refreshFlag }) => ({
         refreshFlag: !refreshFlag
       }));
@@ -61,6 +64,7 @@ class NotesListComponent extends Component<
         <NotesList
           navigation={this.props.navigation}
           notes={this.props.notes}
+          updateNoteRequest={this.props.updateNoteRequest}
         />
       </View>
     );
@@ -80,5 +84,5 @@ const mapStateToProps = (state: AppState, ownProps: NavigationScreenProps) => ({
 
 export const NotesListContainer = connect(
   mapStateToProps,
-  { fetchNotesRequest }
+  { fetchNotesRequest, updateNoteRequest }
 )(NotesListComponent);

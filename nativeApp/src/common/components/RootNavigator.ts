@@ -1,8 +1,8 @@
-import { createStackNavigator } from "react-navigation";
+import { createStackNavigator } from 'react-navigation';
 
-import { colors } from "../../config/variables";
-import { NoteFormContainer } from "../../modules/todo/containers/NoteFormContainer";
-import { NotesListsTab } from "./NotesListNavigator";
+import { colors } from '../../config/variables';
+import { NoteFormContainer } from '../../modules/todo/containers/NoteFormContainer';
+import { NotesListsTab } from './NotesListNavigator';
 
 export const RootNavigator = createStackNavigator({
   Tab: {

@@ -1,13 +1,20 @@
-import { createMaterialTopTabNavigator } from "react-navigation";
+import { createMaterialTopTabNavigator } from 'react-navigation';
 
-import { colors } from "../../config/variables";
-import { NotesListContainer } from "../../modules/todo/containers/NotesListContainer";
+import { colors } from '../../config/variables';
+import { NotesListContainer } from '../../modules/todo/containers/NotesListContainer';
 
 export const NotesListsTab = createMaterialTopTabNavigator(
   {
-    NotesDoneList: { screen: NotesListContainer, title: "Done" },
-    NoteNotDoneForm: { screen: NotesListContainer, title: "To do" }
-  },
+
+    NoteToDoForm: { screen: NotesListContainer, navigationOptions: {
+      title: 'To do'
+    }},
+
+    NotesDoneList: { screen: NotesListContainer,
+      navigationOptions: {
+        title: 'Done'
+      }}
+    },
   {
     tabBarOptions: {
       style: {

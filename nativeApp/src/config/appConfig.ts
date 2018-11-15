@@ -3,7 +3,7 @@ export interface Config {
 }
 
 export const routeConfig = {
-  notesDoneList: "NotesDoneList",
-  notesToDoList: "NotesToDoList",
-  noteForm: "NoteForm"
+  notesDoneList: 'NotesDoneList',
+  notesToDoList: 'NotesToDoList',
+  noteForm: 'NoteForm'
 };
