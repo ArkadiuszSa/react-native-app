@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View , StyleSheet} from 'react-native';
 
+import {routeConfig} from '../../../config/appConfig';
 import { colors } from '../../../config/variables';
 import { NoteForm } from '../components/NoteForm';
 import { createNoteRequest } from '../actions/noteActions';
@@ -14,6 +15,10 @@ interface ActionsProps {
 
 type ParentProps =  ActionsProps & NavigationScreenProps;
 
+interface NoteFormComponentState {
+  title: string
+}
+
 const styles = StyleSheet.create({
   saveButton: {
     backgroundColor: colors.mainTurquoise
@@ -25,10 +30,11 @@ const styles = StyleSheet.create({
   }
 });
 
-class NoteFormComponent extends Component<ParentProps> {
+class NoteFormComponent extends Component<ParentProps, NoteFormComponentState> {
   public state = {
-    noteValue: ''
+    title: ''
   };
+
   static navigationOptions = ({ navigation }: NavigationScreenProps) => {
     return {
       headerStyle: {
@@ -51,24 +57,24 @@ class NoteFormComponent extends Component<ParentProps> {
   render() {
     return (
       <View>
-        <NoteForm noteValue={this.state.noteValue} handleNoteFormChange={this.handleNoteFormChange}/>
+        <NoteForm noteValue={this.state.title} handleNoteFormChange={this.handleNoteFormChange}/>
       </View>
     );
   }
 
-  private handleNoteFormChange = (text: string) => {
-    this.setState({noteValue: text});
+  private handleNoteFormChange = (title: string) => {
+    this.setState({title: title});
   }
 
   private _handleNoteFormSubmit = () => {
     this.props.createNoteRequest({
       id: -1,
-      text: this.state.noteValue,
+      title: this.state.title,
       isDone: false,
       date: ''
     });
 
-    this.props.navigation.navigate({ routeName: 'NotesList' });
+    this.props.navigation.navigate({ routeName: routeConfig.notesToDoList });
   }
 }
 

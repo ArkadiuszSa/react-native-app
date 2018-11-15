@@ -22,15 +22,15 @@ export class NotesListElement extends Component<NotesListProps> {
             color={colors.mainTurquoise}
             style={styles.checkbox}
             onPress={this.updateNote} />
-        <Text style={styles.text}>{note.text}</Text>
+        <Text style={note.isDone ? (styles.doneText) : (styles.text)}>{note.title}</Text>
       </View>
     );
   }
 
   private updateNote = (): void => {
-      const {id, text, date} = this.props.note;
+      const {id, title, date} = this.props.note;
       const newNote = {
-        id, text, date, isDone: true
+        id, title, date, isDone: true
       };
       this.props.updateNoteRequest(newNote);
   }
@@ -51,5 +51,10 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 17
+  },
+  doneText: {
+    fontSize: 17,
+    textDecorationLine: 'line-through'
+
   }
 });

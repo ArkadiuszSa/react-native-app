@@ -23,7 +23,6 @@ export class NotesList extends Component<NotesListProps> {
     return (
       <View style={styles.listWrapper}>
         <ScrollView>
-        {console.log(this.props.updateNoteRequest)}
           <FlatList
             data={this.props.notes}
             keyExtractor={item => String(item.id)}

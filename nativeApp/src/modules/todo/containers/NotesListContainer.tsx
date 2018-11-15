@@ -49,7 +49,7 @@ class NotesListComponent extends Component<
 
   public componentWillMount(): void {
     this.props.fetchNotesRequest();
-    const didRefresh = this.props.navigation.addListener('didBlur', a => {
+    this.props.navigation.addListener('didBlur', a => {
       this.setState(({ refreshFlag }) => ({
         refreshFlag: !refreshFlag
       }));

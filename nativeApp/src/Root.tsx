@@ -5,7 +5,7 @@ import { store } from './config/store';
 import { AppContainer } from './common/containers/AppContainer';
 
 export const Root = () => (
-  <Provider store={store}>
-    <AppContainer />
+  <Provider  store={store}>
+    <AppContainer  />
   </Provider>
 );

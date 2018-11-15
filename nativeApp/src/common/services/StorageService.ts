@@ -25,7 +25,6 @@ export class StorageService {
     data: object | string,
     parse: boolean = false
   ) => {
-    console.log('odpalam zapis');
     AsyncStorage.setItem(
       field,
       parse ? JSON.stringify(data) : (data as string)

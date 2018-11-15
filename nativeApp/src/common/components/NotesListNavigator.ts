@@ -5,8 +5,7 @@ import { NotesListContainer } from '../../modules/todo/containers/NotesListConta
 
 export const NotesListsTab = createMaterialTopTabNavigator(
   {
-
-    NoteToDoForm: { screen: NotesListContainer, navigationOptions: {
+    NotesToDoList: { screen: NotesListContainer, navigationOptions: {
       title: 'To do'
     }},
 

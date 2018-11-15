@@ -30,8 +30,6 @@ export const TodoReducer = (
         notes: [...state.notes, action.payload]
       };
     case actions.UPDATE_NOTE_SUCCEEDED:
-    console.log(action);
-    console.log('akcja update');
       return {
         ...state,
         isLoading: false,
