@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { View, StyleSheet } from "react-native";
-import { Form, Textarea, Item, DatePicker } from "native-base";
+import React, { Component } from 'react';
+import { View, StyleSheet } from 'react-native';
+import { Form, Textarea, Item, DatePicker } from 'native-base';
 
 interface ParentProps {
 	title: string;
@@ -22,7 +22,7 @@ export class NoteForm extends Component<NoteFormProps> {
 							style={styles.textarea}
 							rowSpan={1}
 							value={this.props.title}
-							placeholder="Title"
+							placeholder='Title'
 							onChangeText={this.props.handleTitleChange}
 						/>
 					</Item>
@@ -30,19 +30,19 @@ export class NoteForm extends Component<NoteFormProps> {
 						<Textarea
 							style={styles.textarea}
 							rowSpan={3}
-							placeholder="Description"
+							placeholder='Description'
 							value={this.props.description}
 							onChangeText={this.props.handleDescriptionChange}
 						/>
 					</Item>
 					<Item>
 						<DatePicker
-							locale={"en"}
+							locale={'en'}
 							timeZoneOffsetInMinutes={undefined}
 							modalTransparent={false}
-							animationType={"fade"}
-							androidMode={"default"}
-							placeHolderText="Select date"
+							animationType={'fade'}
+							androidMode={'default'}
+							placeHolderText='Select date'
 							onDateChange={this.props.handleDateChange}
 						/>
 					</Item>

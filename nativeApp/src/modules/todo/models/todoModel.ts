@@ -5,3 +5,11 @@ export interface Note {
 	date: string;
 	isDone: boolean;
 }
+
+export const initialNote = {
+	id: -1,
+	title: '',
+	description: '',
+	date: '',
+	isDone: false
+};

@@ -1,9 +1,8 @@
-import { createStackNavigator } from "react-navigation";
+import { createStackNavigator } from 'react-navigation';
 
-import { colors } from "../../config/variables";
-import { NoteFormContainer } from "../../modules/todo/containers/NoteFormContainer";
-import { NotesListsTab } from "./NotesListNavigator";
-import { ImagePickerExample } from "../../modules/todo/containers/DatePickerTest";
+import { colors } from '../../config/variables';
+import { NoteFormContainer } from '../../modules/todo/containers/NoteFormContainer';
+import { NotesListsTab } from './NotesListNavigator';
 export const RootNavigator = createStackNavigator({
 	Tab: {
 		screen: NotesListsTab,
@@ -15,5 +14,6 @@ export const RootNavigator = createStackNavigator({
 			lazy: true
 		}
 	},
-	NoteForm: { screen: ImagePickerExample }
+	NoteFormCreate: { screen: NoteFormContainer },
+	NoteFormUpdate: { screen: NoteFormContainer }
 });

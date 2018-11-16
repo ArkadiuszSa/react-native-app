@@ -21,6 +21,10 @@ export class NoteService {
         return from(this.updateNoteInStorage(note));
     }
 
+    public deleteNote = (noteId: number) => {
+        return from(this.deleteNoteFromStorage(noteId));
+    }
+
     public deleteNotes = () => {
         return this.storageService.removeItem('notes');
     }
@@ -32,7 +36,7 @@ export class NoteService {
 
     private async saveNoteInStorage(note: Note) {
         const id = new Date().valueOf();
-        const newNote = { id, title: note.title, date: note.date, isDone: note.isDone};
+        const newNote = { ...note, id};
         const notes = await this.storageService.getItem<Note[]>('notes', true);
         await this.storageService.setItem('notes', [...notes ? (notes) : [], newNote], true);
         return newNote;
@@ -45,6 +49,15 @@ export class NoteService {
             await this.storageService.setItem('notes', [...newNotes ? (newNotes) : [], note], true);
         }
         return note;
+    }
+
+    private async deleteNoteFromStorage(noteId: number) {
+        const notes = await this.storageService.getItem<Note[]>('notes', true);
+        if (Array.isArray(notes)) {
+            const newNotes = notes.filter(({id}: Note) => id !== noteId);
+            await this.storageService.setItem('notes', [...newNotes ? (newNotes) : []], true);
+        }
+        return noteId;
     }
 
 }

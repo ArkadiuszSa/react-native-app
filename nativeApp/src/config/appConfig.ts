@@ -5,5 +5,6 @@ export interface Config {
 export const routeConfig = {
   notesDoneList: 'NotesDoneList',
   notesToDoList: 'NotesToDoList',
-  noteForm: 'NoteForm'
+  noteFormCreate: 'NoteFormCreate',
+  noteFormUpdate: 'NoteFormUpdate'
 };

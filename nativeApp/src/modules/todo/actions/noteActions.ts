@@ -67,11 +67,38 @@ export const updateNoteSuccess = (note: Note) => ({
 });
 
 export const UPDATE_NOTE_FAILED = 'UPDATE_NOTE_FAILED';
-export type UpdateNoteFAilAction = Action<
+export type UpdateNoteFailAction = Action<
   typeof UPDATE_NOTE_FAILED, string
 >;
 export const updateNoteFail = (msg: string) => ({
   type: UPDATE_NOTE_FAILED,
+  payload: msg
+});
+
+export const DELETE_NOTE_REQUESTED = 'UPDATE_NODELETE_NOTE_REQUESTEDTE_REQUESTED';
+export type DeleteNoteRequestAction = Action<
+  typeof DELETE_NOTE_REQUESTED, number
+>;
+export const deleteNoteRequest = (noteId: number) => ({
+  type: DELETE_NOTE_REQUESTED,
+  payload: noteId
+});
+
+export const DELETE_NOTE_SUCCEEDED = 'DELETE_NOTE_SUCCEEDED';
+export type DeleteNoteSuccedAction = Action<
+  typeof DELETE_NOTE_SUCCEEDED, number
+>;
+export const deleteNoteSuccess = (noteId: number) => ({
+  type: DELETE_NOTE_SUCCEEDED,
+  payload: noteId
+});
+
+export const DELETE_NOTE_FAILED = 'DELETE_NOTE_FAILED';
+export type DeleteNoteFailAction = Action<
+  typeof DELETE_NOTE_FAILED, string
+>;
+export const deleteNoteFail = (msg: string) => ({
+  type: DELETE_NOTE_FAILED,
   payload: msg
 });
 
@@ -84,4 +111,7 @@ export type NoteActions =
   | CreateNoteFailAction
   | UpdateNoteRequestAction
   | UpdateNoteSuccedAction
-  | UpdateNoteFAilAction;
+  | UpdateNoteFailAction
+  | DeleteNoteRequestAction
+  | DeleteNoteSuccedAction
+  | DeleteNoteFailAction;
