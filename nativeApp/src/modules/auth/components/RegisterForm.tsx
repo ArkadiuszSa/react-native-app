@@ -3,6 +3,7 @@ import { View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { Form, Item, Input, Icon, Text } from 'native-base';
 
 import { colors } from '../../../config/variables';
+import { registerRequest } from '../../auth/actions/authActions';
 
 const styles = StyleSheet.create({
     view: {
@@ -35,7 +36,9 @@ const styles = StyleSheet.create({
     },
 });
 
-interface ParentProps {}
+interface ParentProps {
+    registerRequest: typeof registerRequest;
+}
 
 type RegisterFormProps = ParentProps;
 
@@ -67,7 +70,7 @@ export class RegisterForm extends Component<RegisterFormProps> {
                                 // onChangeText={this.props.handleDescriptionChange}
                             />
                         </Item>
-                        <Item>
+                        {/* <Item>
                             <Icon active style={styles.icon} type="MaterialIcons" name="lock" />
 
                             <Input
@@ -78,13 +81,18 @@ export class RegisterForm extends Component<RegisterFormProps> {
                                 // value={this.props.description}
                                 // onChangeText={this.props.handleDescriptionChange}
                             />
-                        </Item>
+                        </Item> */}
                     </Form>
                 </View>
-                <TouchableOpacity style={styles.registerButton}>
+                <TouchableOpacity style={styles.registerButton} onPress={this.handleRegister}>
                     <Text style={styles.registerButtonText}>Register</Text>
                 </TouchableOpacity>
             </View>
         );
     }
+
+    private handleRegister = () => {
+        console.log('register');
+        this.props.registerRequest({ email: 'sdfsf', password: 'dupa' });
+    };
 }

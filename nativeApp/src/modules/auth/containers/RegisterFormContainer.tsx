@@ -1,12 +1,24 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { NavigationScreenProps } from 'react-navigation';
 
+import { AppState } from '../../../appState';
+import { registerRequest } from '../../auth/actions/authActions';
 import { RegisterForm } from '../components/RegisterForm';
 
-type RegisterFormContainerProps = NavigationScreenProps;
+interface ActionsProps {
+    registerRequest: typeof registerRequest;
+}
 
-export class RegisterFormContainer extends Component<RegisterFormContainerProps> {
+type RegisterFormContainerProps = NavigationScreenProps & ActionsProps;
+
+export class RegisterFormComponent extends Component<RegisterFormContainerProps> {
     render() {
-        return <RegisterForm />;
+        return <RegisterForm registerRequest={this.props.registerRequest} />;
     }
 }
+
+export const RegisterFormContainer = connect(
+    null,
+    { registerRequest },
+)(RegisterFormComponent);

@@ -4,9 +4,11 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { rootEpic } from '../rootEpic';
 import { TodoReducer } from '../modules/todo/reducers/todoReducer';
+import { AuthReducer } from '../modules/auth/reducers/authReducer';
 
 const rootReducer = combineReducers({
-  todo: TodoReducer
+    todo: TodoReducer,
+    auth: AuthReducer,
 });
 
 const epicMiddleware = createEpicMiddleware();

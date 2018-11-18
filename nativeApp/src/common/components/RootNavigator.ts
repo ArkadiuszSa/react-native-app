@@ -40,6 +40,7 @@ export const RootNavigator = createStackNavigator({
     Tab: {
         screen: NotesListsTab,
         navigationOptions: {
+            headerLeft: null,
             headerStyle: {
                 backgroundColor: colors.mainTurquoise,
                 height: 0,

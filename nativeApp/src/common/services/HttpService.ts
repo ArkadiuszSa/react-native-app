@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { ajax, AjaxResponse } from 'rxjs/ajax';
 
-import { authConfig } from '../../config/appConfig';
+import { authConfig, routeConfig } from '../../config/appConfig';
 import { StorageService } from './StorageService';
 import { Response } from '../models/httpModel';
 
@@ -30,18 +30,24 @@ export class HttpService {
 
     private makeRequest<B, R>(method: string, url: string, body?: B): Observable<Response<R>> {
         const bodyJSON = JSON.stringify(body);
-        const token = this.storageService.getItem(authConfig.tokenField);
-        const headers = {
-            'Content-Type': 'application/json',
-            Authorization: token ? `JWT ${token}` : null,
-        };
+        // const token = this.storageService.getItem(authConfig.tokenField);
+        // const headers = {
+        //     'Content-Type': 'application/json',
+        //     Authorization: token ? `JWT ${token}` : null,
+        // };
 
         const options = {
             method,
-            headers,
+            // headers,
             body: bodyJSON,
         };
 
-        return ajax({ ...options, url }) as Observable<AjaxResponse & Response<R>>;
+        const requestUrl = `${routeConfig.API_URL}${url}`;
+
+        // return ajax({ ...options, url: requestUrl }) as Observable<AjaxResponse & Response<R>>;
+        return ajax({
+            ...options,
+            url: 'https://2c7c96bf-c606-405b-ac25-3ba0920f34a6.mock.pstmn.io/users',
+        }) as Observable<AjaxResponse & Response<R>>;
     }
 }

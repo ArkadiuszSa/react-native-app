@@ -7,7 +7,7 @@ import { setTopLevelNavigator } from '../services/NavigationService';
 
 export class AppContainer extends Component {
     public state = {
-        isReady: false
+        isReady: false,
     };
     public componentDidMount() {
         this.loadFonts();
@@ -15,7 +15,8 @@ export class AppContainer extends Component {
     async loadFonts() {
         await Font.loadAsync({
             Ionicons: require('native-base/Fonts/Ionicons.ttf'),
-            Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf')
+            Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+            MaterialIcons: require('native-base/Fonts/MaterialIcons.ttf'),
         });
         this.setState({ isReady: true });
     }
