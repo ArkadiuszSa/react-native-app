@@ -1,7 +1,9 @@
 from django.urls import path
+from rest_framework.urlpatterns import format_suffix_patterns
+
 from notes import views
 
 urlpatterns = [
-    path('notes/', views.note_list),
-    path('notes/<int:pk>/', views.note_detail),
+    path('notes/', views.NoteList.as_view()),
+    path('notes/<int:pk>/', views.NoteDetail.as_view()),
 ]
