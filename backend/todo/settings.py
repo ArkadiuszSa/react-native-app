@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'notes.apps.NotesConfig',
+    'users.apps.UsersConfig',
     # 'pygments.lexers'
 
 ]

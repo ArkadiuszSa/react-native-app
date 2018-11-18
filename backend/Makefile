@@ -8,3 +8,17 @@ build-dev:
 .PHONY: dev
 dev:
 	$(containers-tool) $(dev-dockerfile) up
+
+### backend ###
+
+.PHONY: backend-bash
+backend-bash:
+	$(containers-tool) exec backend bash
+
+.PHONY: migrations
+migrations:
+	$(containers-tool) exec backend bash -c "./manage.py makemigrations"
+
+.PHONY: migrate
+migrations:
+	$(containers-tool) exec backend ./manage.py migrate
